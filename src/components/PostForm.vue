@@ -23,6 +23,7 @@
 <script>
 import MyButton from '@/components/UI/MyButton';
 import MyInput from '@/components/UI/MyInput';
+import { handleError } from 'vue';
 
 export default {
     components: {MyButton, MyInput},
@@ -43,6 +44,14 @@ export default {
                 body: ''
             }
             
+        }
+    },
+    watch: {
+        post: {
+            handler(newVal) {
+                console.log(newVal);
+            },
+            deep: true
         }
     }
 }
