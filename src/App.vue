@@ -29,6 +29,8 @@
             <elevator-emulator
                 :floorCount="floorCount"
                 :elevatorCount="elevatorCount"
+                :commandQueue="commandQueue"
+                @addCommand="addCommandToQueue"
             />
         </div>
     </div>
@@ -62,6 +64,8 @@ export default {
             ],
             floorCount: 5,
             elevatorCount: 3,
+            // commandQueue: {type:Array, required: true},
+            commandQueue: [],
 
         }
     },
@@ -71,6 +75,7 @@ export default {
             this.dialogVisible = false;
         },
         removePost(post) {
+            console.log('remove post', post);
             this.posts = this.posts.filter(p => p.id !== post.id)
         },
         showDialog() {
@@ -86,6 +91,10 @@ export default {
             } finally {
                 this.isPostsLoading = false;
             }
+        },
+        addCommandToQueue(floorNumber) {
+            console.log('addCommandToQueue works', floorNumber);
+            this.commandQueue.push(floorNumber);
         }
     },
     mounted() {

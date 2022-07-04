@@ -3,7 +3,11 @@
         <div>Пространство шахты</div>
         <shaft-space v-for="index in elevatorCount"/>
         Этаж
-        <elevator-button>Вызов лифта</elevator-button>
+        <elevator-button
+            @click="$emit('addCommand', floorNumber)"
+        >
+            Вызов лифта {{floorNumber}}
+        </elevator-button>
     </div>
 </template>
 
@@ -23,6 +27,10 @@ export default {
             type: Number,
             required: true
         },
+        floorNumber: {
+            type: Number,
+            required: true
+        }
     }
 }
 </script>
