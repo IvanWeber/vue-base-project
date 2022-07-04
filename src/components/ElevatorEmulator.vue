@@ -10,6 +10,8 @@
         <floor-item 
             v-for="index in floorCount"
             :elevatorCount="elevatorCount"
+            :floorNumber="index"
+            @addCommand="$emit('addCommand', floorNumber)"
         />
     <!-- </div> -->
     <!-- <h2 v-else style="color: red">
@@ -30,6 +32,10 @@ export default {
         },
         elevatorCount: {
             type: Number,
+            required: true
+        },
+        commandQueue: {
+            type: Array,
             required: true
         }
     }
