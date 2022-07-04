@@ -25,6 +25,12 @@
             v-if="!isPostsLoading"
         />
         <div v-else>Идёт загрузка...</div>
+        <div>
+            <elevator-emulator
+                :floorCount="floorCount"
+                :elevatorCount="elevatorCount"
+            />
+        </div>
     </div>
 </template>
 
@@ -33,6 +39,7 @@
 
 import PostForm from "./components/PostForm";
 import PostList from "@/components/PostList";
+import ElevatorEmulator from "@/components/ElevatorEmulator";
 import MyDialog from '@/components/UI/MyDialog';
 import MyButton from '@/components/UI/MyButton';
 import MySelect from '@/components/UI/MySelect';
@@ -41,7 +48,7 @@ import axios from 'axios';
 export default {
 
     components: {
-        PostList, PostForm, MyDialog, MyButton, MySelect
+        PostList, PostForm, MyDialog, MyButton, MySelect, ElevatorEmulator
     },
     data() {
         return {
@@ -52,7 +59,10 @@ export default {
             sortOptions: [
                 {value: 'title', name: 'По названию'},
                 {value: 'body', name: 'По содержимому'}
-            ]
+            ],
+            floorCount: 5,
+            elevatorCount: 3,
+
         }
     },
     methods: {
@@ -80,6 +90,13 @@ export default {
     },
     mounted() {
         this.fetchPosts();
+    },
+    computed: {
+        sortedPosts() {
+            return [...this.posts].sort((post1, post2) => {
+                return post1[newValue]?.localeCompare(post2[newValue])
+            })
+        }
     },
     watch: {
         selectedSort(newValue) {
