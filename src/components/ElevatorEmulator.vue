@@ -11,7 +11,7 @@
             v-for="index in floorCount"
             :elevatorCount="elevatorCount"
             :floorNumber="index"
-            @addCommand="$emit('addCommand', floorNumber)"
+            @addCommand="$emit('addCommand', index)"
         />
     <!-- </div> -->
     <!-- <h2 v-else style="color: red">

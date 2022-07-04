@@ -75,6 +75,7 @@ export default {
             this.dialogVisible = false;
         },
         removePost(post) {
+            console.log('remove post', post);
             this.posts = this.posts.filter(p => p.id !== post.id)
         },
         showDialog() {
